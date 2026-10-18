@@ -1,0 +1,17 @@
+Week 7 – Task 25: Endpoint Discovery
+
+Target: Local DVWA lab (127.0.0.1)
+Method: Manual browsing and Burp Suite Target → Site map
+
+Endpoints observed:
+- /dvwa/login.php
+- /dvwa/security.php
+- /dvwa/vulnerabilities/sqli/
+- /dvwa/vulnerabilities/xss_r/
+- /dvwa/vulnerabilities/xss_s/
+- /dvwa/vulnerabilities/upload/
+- /dvwa/vulnerabilities/csrf/
+
+These paths were observed in the local lab during browsing.
+Their presence alone does not confirm a vulnerability.
+Testing results are documented separately in Task 24.

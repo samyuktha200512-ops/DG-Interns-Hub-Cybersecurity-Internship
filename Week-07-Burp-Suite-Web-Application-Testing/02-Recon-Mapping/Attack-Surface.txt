@@ -1,0 +1,13 @@
+Week 7 – DVWA Attack Surface Mapping
+
+**Target:** Local DVWA application at 127.0.0.1
+
+**Discovery method:** Manual browsing using Burp Suite’s built-in browser and review of Target → Site map.
+
+**Identified areas:**
+- Authentication: `/dvwa/login.php`
+- SQL Injection: `/dvwa/vulnerabilities/sqli/`
+- Cross-Site Scripting (XSS): `/dvwa/vulnerabilities/xss_r/` and `/dvwa/vulnerabilities/xss_s/`
+- Additional areas observed: CSRF, file inclusion, file upload, open redirect, and security-related modules.
+
+**Scope limitation:** These paths were identified through browsing. Their presence does not, by itself, confirm that a vulnerability exists. Further testing is required to validate findings.
