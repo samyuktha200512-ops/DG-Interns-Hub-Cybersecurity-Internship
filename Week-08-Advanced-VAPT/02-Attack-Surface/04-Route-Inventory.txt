@@ -1,0 +1,11 @@
+Week 8 — OWASP Juice Shop Route Inventory
+
+Target: http://127.0.0.1:3000
+
+Observed pages:
+- Home page
+- Login page
+- Registration page
+
+Other observed paths:
+- Add only paths confirmed in Burp Site map
