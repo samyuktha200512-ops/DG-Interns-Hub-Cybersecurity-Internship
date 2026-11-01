@@ -1,747 +1,712 @@
-🔐 DG Interns Hub — Week 03 Cybersecurity Practical Task
+# DG Interns Hub — Week 03 Cybersecurity Practical Task
 
-<div align=*center*>
+![DG Interns Hub](https://img.shields.io/badge/DG%20Interns%20Hub-Cybersecurity-0A66C2?style=flat-square)
+![Week](https://img.shields.io/badge/Week-03-6F42C1?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Completed-2EA44F?style=flat-square)
 
-![DG Interns Hub](https://img.shields.io/badge/DG%20Interns%20Hub-Cybersecurity-0A66C2?style=flat-square) ![Week 03](https://img.shields.io/badge/Week-03-6F42C1?style=flat-square) ![Status](https://img.shields.io/badge/Status-Completed-2EA44F?style=flat-square)
-
-![Kali Linux](https://img.shields.io/badge/Kali-Linux-557C94?style=flat-square&logo=kalilinux&logoColor=white) ![Ubuntu](https://img.shields.io/badge/Ubuntu-Server-E95420?style=flat-square&logo=ubuntu&logoColor=white) ![Nmap](https://img.shields.io/badge/Nmap-Network%20Scanning-4682B4?style=flat-square) ![Wireshark](https://img.shields.io/badge/Wireshark-Traffic%20Analysis-1679A7?style=flat-square&logo=wireshark&logoColor=white) ![VMware](https://img.shields.io/badge/VMware-Virtual%20Lab-607078?style=flat-square&logo=vmware&logoColor=white) ![UFW](https://img.shields.io/badge/UFW-Firewall%20Hardening-8B5CF6?style=flat-square)
+![Kali Linux](https://img.shields.io/badge/Kali-Linux-557C94?style=flat-square&logo=kalilinux&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-Server-E95420?style=flat-square&logo=ubuntu&logoColor=white)
+![Nmap](https://img.shields.io/badge/Nmap-Network%20Scanning-4682B4?style=flat-square)
+![Wireshark](https://img.shields.io/badge/Wireshark-Traffic%20Analysis-1679A7?style=flat-square&logo=wireshark&logoColor=white)
+![VMware](https://img.shields.io/badge/VMware-Virtual%20Lab-607078?style=flat-square&logo=vmware&logoColor=white)
+![UFW](https://img.shields.io/badge/UFW-Firewall%20Hardening-8B5CF6?style=flat-square)
 
 ### Advanced Cybersecurity Practical Task
 
-Real-World Network Security Assessment & Traffic Investigation
+**Real-World Network Security Assessment & Traffic Investigation**
 
-</div>
+**Intern:** SAMYUKTHA S  
+**Intern ID:** DG/SEPTEMBER/CYBER/102
 
-📌 Project Overview
+---
+
+## Project Overview
 
 This repository contains my Week 03 Advanced Cybersecurity Practical Task completed as part of the DG Interns Hub Cybersecurity Internship.
 
-The practical focused on building and assessing an isolated virtual cybersecurity lab using Kali Linux and Ubuntu Server. The assessment covered host discovery, network scanning, service enumeration, operating-system detection, **TCP**/**UDP** analysis, Wireshark packet investigation, vulnerability-oriented assessment, security hardening, and before/after validation.
+The practical focused on building and assessing an isolated virtual cybersecurity lab using Kali Linux and Ubuntu Server. The assessment covered host discovery, network scanning, service enumeration, operating-system detection, TCP/UDP analysis, Wireshark packet investigation, vulnerability-oriented assessment, security hardening, and before/after validation.
 
 All activities were performed in an authorized, isolated laboratory environment using my own virtual machines.
 
-🎯 Objectives
+## Objectives
 
 The main objectives of this practical were to:
 
-Build an isolated cybersecurity laboratory.
+- Build an isolated cybersecurity laboratory.
+- Discover active systems within the authorized lab network.
+- Perform basic and advanced Nmap scanning.
+- Identify exposed services and service versions.
+- Analyze TCP, UDP, ICMP, DNS and ARP traffic using Wireshark.
+- Correlate Nmap results with packet-level evidence.
+- Investigate TCP flags, resets and retransmissions.
+- Perform an evidence-based vulnerability assessment.
+- Apply security hardening to the Ubuntu target.
+- Validate the hardening through before/after testing.
+- Complete a final mini security assessment.
 
-Discover active systems within the authorized lab network.
-
-Perform basic and advanced Nmap scanning.
-
-Identify exposed services and service versions.
-
-Analyze **TCP**, **UDP**, **ICMP**, **DNS** and **ARP** traffic using Wireshark.
-
-Correlate Nmap results with packet-level evidence.
-
-Investigate **TCP** flags, resets and retransmissions.
-
-Perform an evidence-based vulnerability assessment.
-
-Apply security hardening to the Ubuntu target.
-
-Validate the hardening through before/after testing.
-
-Complete a final mini security assessment.
-
-🧪 Lab Environment
+## Lab Environment
 
 The practical was performed using VMware virtualization.
 
 ### Virtual Machines
 
-System
+| System | Role | IP Address |
+|---|---|---|
+| Kali Linux | Security analysis / scanning machine | `192.168.162.128` |
+| Ubuntu Server | Authorized target machine | `192.168.162.130` |
 
-Role
+### Network Configuration
 
-IP Address
-
-### Kali Linux
-
-Security analysis / scanning machine
-
-**192**.**168**.**162**.**128**
-
-### Ubuntu Server
-
-Authorized target machine
-
-**192**.**168**.**162**.**130**
-
-Network
-
-Network:      **192**.**168**.**162**.0/24 Subnet Mask:  **255**.**255**.**255**.0 Network Type: VMware Host-only / VMnet1
+| Setting | Value |
+|---|---|
+| Network | `192.168.162.0/24` |
+| Subnet Mask | `255.255.255.0` |
+| Network Type | VMware Host-only / VMnet1 |
 
 ### Lab Architecture
 
-    VMware Workstation
-    │
-    Host-only VMnet1
-    **192**.**168**.**162**.0/24
-    │
-    ┌──────────────┴──────────────┐
-    │                             │
-    ┌──────▼──────┐               ┌──────▼──────┐
-    │ Kali Linux  │               │ Ubuntu      │
-    │ Scanner     │               │ Target      │
-    │             │               │             │
-    │ **192**.**168**.    │               │ **192**.**168**.    │
-    │ **162**.**128**     │               │ **162**.**130**     │
-    └─────────────┘               └─────────────┘
-    │                             │
-    └──── Nmap / Wireshark ──────┘
-
-The detailed network topology diagram is available in the 03-Network-Topology/ directory.
-
-🛠️ Tools Used
-
-Tool
-
-Purpose
-
-### Kali Linux
-
-Security testing and traffic analysis
-
-### Ubuntu Server
-
-Authorized target system
-
+```text
 VMware Workstation
+│
+└── Host-only VMnet1
+    │
+    └── 192.168.162.0/24
+        │
+        ├── Kali Linux — Scanner
+        │   └── 192.168.162.128
+        │
+        └── Ubuntu Server — Target
+            └── 192.168.162.130
 
-Virtualization and isolated lab networking
+        Nmap / Wireshark
+```
 
-Nmap
+The detailed network topology diagram is available in the `03-Network-Topology/` directory.
 
-Host discovery, port scanning and service assessment
+## Tools Used
 
-Wireshark
+| Tool | Purpose |
+|---|---|
+| Kali Linux | Security testing and traffic analysis |
+| Ubuntu Server | Authorized target system |
+| VMware Workstation | Virtualization and isolated lab networking |
+| Nmap | Host discovery, port scanning and service assessment |
+| Wireshark | Packet capture and traffic investigation |
+| UFW | Host firewall hardening |
+| Netcat | Controlled TCP/UDP traffic generation |
+| Ping / ICMP | Connectivity verification |
+| SSH | Secure remote-access testing |
 
-Packet capture and traffic investigation
+---
 
-## **UFW**
+## Task 7 — Network Discovery & Basic Nmap Scanning
 
-Host firewall hardening
-
-Netcat
-
-Controlled **TCP**/**UDP** traffic generation
-
-Ping / **ICMP**
-
-Connectivity verification
-
-## **SSH**
-
-Secure remote-access testing
-
-🔎 Task 7 — Network Discovery & Basic Nmap Scanning
-
-7.1 Host Discovery
+### 7.1 Host Discovery
 
 The authorized lab subnet was scanned using:
 
-nmap -sn **192**.**168**.**162**.0/24
+```bash
+nmap -sn 192.168.162.0/24
+```
 
 The scan identified four responsive addresses.
 
 Relevant lab systems:
 
-Kali Linux — **192**.**168**.**162**.**128**
-
-Ubuntu Target — **192**.**168**.**162**.**130**
+- Kali Linux — `192.168.162.128`
+- Ubuntu Target — `192.168.162.130`
 
 The remaining responsive addresses were identified as VMware-related virtual-network infrastructure.
 
-Evidence
+**Evidence:** `04-Nmap/01-Network-Discovery.png`
 
-📁 04-Nmap/01-Network-Discovery.png
-
-7.2 Basic **TCP** Scan
+### 7.2 Basic TCP Scan
 
 The Ubuntu target was scanned using:
 
-nmap **192**.**168**.**162**.**130**
+```bash
+nmap 192.168.162.130
+```
 
-Result
+**Result:**
 
+```text
 22/tcp open ssh
+```
 
-Nmap also reported **999** closed **TCP** ports in its default scan.
+Nmap also reported 999 closed TCP ports in its default scan.
 
-Observation
+**Observation:** The target was reachable and SSH was exposed on TCP port 22.
 
-The target was reachable and **SSH** was exposed on **TCP** port 22.
+**Evidence:** `04-Nmap/02-Basic-Nmap-Scan.png`
 
-Evidence
+---
 
-📁 04-Nmap/02-Basic-Nmap-Scan.png
+## Task 8 — Advanced Nmap Security Assessment
 
-🔬 Task 8 — Advanced Nmap Security Assessment
+### 8.1 Service & Version Detection
 
-8.1 Service & Version Detection
+**Command:**
 
-Command:
+```bash
+nmap -sV 192.168.162.130
+```
 
-nmap -sV **192**.**168**.**162**.**130**
+**Result:**
 
-Result
-
+```text
 22/tcp open ssh OpenSSH 10.2p1 Ubuntu 2ubuntu3.5
+```
 
 The scan also identified Linux-related service information.
 
-Evidence
+**Evidence:** `04-Nmap/03-Nmap-Service-Version-Detection.png`
 
-📁 04-Nmap/03-Nmap-Service-Version-Detection.png
+### 8.2 Operating System Detection
 
-8.2 Operating System Detection
+**Command:**
 
-Command:
+```bash
+nmap -O 192.168.162.130
+```
 
-nmap -O **192**.**168**.**162**.**130**
-
-Result
+**Result:**
 
 Nmap reported:
 
+```text
 No exact OS matches for host
+```
 
-A **TCP**/IP fingerprint was generated and network distance was reported as one hop.
+A TCP/IP fingerprint was generated and network distance was reported as one hop.
 
-Observation
+**Observation:** The target is known to be Ubuntu from the lab configuration, but this particular Nmap OS detection attempt did not return an exact match.
 
-The target is known to be Ubuntu from the lab configuration, but this particular Nmap OS detection attempt did not return an exact match.
+**Evidence:** `04-Nmap/04-Nmap-OS-Detection.png`
 
-Evidence
+### 8.3 TCP SYN Scan
 
-📁 04-Nmap/04-Nmap-OS-Detection.png
+**Command:**
 
-8.3 **TCP** **SYN** Scan
+```bash
+nmap -sS 192.168.162.130
+```
 
-Command:
+**Result:**
 
-nmap -sS **192**.**168**.**162**.**130**
-
-Result
-
+```text
 22/tcp open ssh
+```
 
-Observation
+**Observation:** The SYN scan produced a result consistent with the basic TCP scan.
 
-The **SYN** scan produced a result consistent with the basic **TCP** scan.
+**Evidence:** `04-Nmap/05-Nmap-SYN-Scan.png`
 
-Evidence
+### 8.4 UDP Top-20 Scan
 
-📁 04-Nmap/05-Nmap-**SYN**-Scan.png
+**Command:**
 
-8.4 **UDP** Top-20 Scan
+```bash
+nmap -sU --top-ports 20 192.168.162.130
+```
 
-Command:
+**Result:**
 
-nmap -sU --top-ports 20 **192**.**168**.**162**.**130**
+Several ports were reported as `open|filtered`, while others were closed.
 
-Result
+No UDP port was conclusively identified as open during this assessment.
 
-Several ports were reported as open|filtered, while others were closed.
+**Important Interpretation:**
 
-No **UDP** port was conclusively identified as open during this assessment.
+`open|filtered` does not confirm that a UDP service is open. It indicates that Nmap could not distinguish between an open port and a filtered port from the available responses.
 
-### Important Interpretation
+**Evidence:** `04-Nmap/06-Nmap-UDP-Top20.png`
 
-open|filtered does not confirm that a **UDP** service is open. It indicates that Nmap could not distinguish between an open port and a filtered port from the available responses.
+### 8.5 Vulnerability-Oriented NSE Scan
 
-Evidence
+**Command:**
 
-📁 04-Nmap/06-Nmap-**UDP**-Top20.png
+```bash
+nmap --script vuln 192.168.162.130
+```
 
-8.5 Vulnerability-Oriented **NSE** Scan
-
-Command:
-
-nmap --script vuln **192**.**168**.**162**.**130**
-
-Result
+**Result:**
 
 No vulnerability findings were reported in the command output.
 
-### Important Interpretation
+**Important Interpretation:**
 
 This result does not prove that the target contains zero vulnerabilities. It only means that the selected Nmap vulnerability-oriented scripts did not report a finding during this assessment.
 
-Evidence
+**Evidence:** `04-Nmap/07-Nmap-Vulnerability-Scripts.png`
 
-📁 04-Nmap/07-Nmap-Vulnerability-Scripts.png
+---
 
-📡 Task 9 — Wireshark Network Traffic Capture
+## Task 9 — Wireshark Network Traffic Capture
 
-Wireshark was used to capture and analyze traffic on Kali's eth0 interface.
+Wireshark was used to capture and analyze traffic on Kali's `eth0` interface.
 
 The following traffic types were investigated:
 
-## **ICMP**
+- ICMP
+- DNS
+- TCP / SSH
+- UDP
+- ARP
+- TCP SYN
+- TCP RST
 
-## **DNS**
+### 9.1 ICMP Capture
 
-## **TCP** / **SSH**
+The Kali and Ubuntu systems exchanged IPv4 ICMP echo requests and replies.
 
-## **UDP**
+**Observation:** Four Echo Requests and corresponding Echo Replies were observed during the controlled ping test.
 
-## **ARP**
+**Evidence:** `05-Wireshark/01-ICMP-Capture.png`
 
-## **TCP** **SYN**
+### 9.2 DNS Capture
 
-## **TCP** **RST**
-
-9.1 **ICMP** Capture
-
-The Kali and Ubuntu systems exchanged IPv4 **ICMP** echo requests and replies.
-
-Observation
-
-Four Echo Requests and corresponding Echo Replies were observed during the controlled ping test.
-
-Evidence
-
-📁 05-Wireshark/01-**ICMP**-Capture.png
-
-9.2 **DNS** Capture
-
-A controlled **DNS** lookup was generated and captured using Wireshark.
+A controlled DNS lookup was generated and captured using Wireshark.
 
 The traffic showed:
 
-**DNS** Standard Query **DNS** Standard Query Response
+- DNS Standard Query
+- DNS Standard Query Response
 
-Evidence
+**Evidence:** `05-Wireshark/02-DNS-Capture.png`
 
-📁 05-Wireshark/02-**DNS**-Capture.png
+### 9.3 TCP / SSH Capture
 
-9.3 **TCP** / **SSH** Capture
-
-The **SSH** service on port 22 was observed during a controlled connection.
+The SSH service on port 22 was observed during a controlled connection.
 
 The capture showed:
 
-## **SYN** **SYN**-**ACK** **ACK**
+```text
+SYN → SYN-ACK → ACK
+```
 
-followed by **SSH** protocol negotiation and encrypted traffic.
+This was followed by SSH protocol negotiation and encrypted traffic.
 
-Evidence
+**Evidence:** `05-Wireshark/03-TCP-SSH-Capture.png`
 
-📁 05-Wireshark/03-**TCP**-**SSH**-Capture.png
+### 9.4 UDP Capture
 
-9.4 **UDP** Capture
+A controlled UDP packet was sent from Kali to Ubuntu on destination port `9999`.
 
-A controlled **UDP** packet was sent from Kali to Ubuntu on destination port **9999**.
+**Example:**
 
-Example
+| Field | Value |
+|---|---|
+| Source | `192.168.162.128` |
+| Destination | `192.168.162.130` |
+| UDP ports | `33655 → 9999` |
 
-Kali:   **192**.**168**.**162**.**128** Ubuntu: **192**.**168**.**162**.**130** **UDP**:    **33655** → **9999**
+**Evidence:** `05-Wireshark/04-UDP-Capture.png`
 
-Evidence
+### 9.5 ARP Capture
 
-📁 05-Wireshark/04-**UDP**-Capture.png
+ARP traffic was captured during local address resolution.
 
-9.5 **ARP** Capture
+**Example:**
 
-**ARP** traffic was captured during local address resolution.
+```text
+Who has 192.168.162.130?
+```
 
-Example:
+The Ubuntu target responded with its MAC address.
 
-Who has **192**.**168**.**162**.**130**?
+**Evidence:** `05-Wireshark/05-ARP-Capture.png`
 
-The Ubuntu target responded with its **MAC** address.
+### 9.6 TCP SYN Capture
 
-Evidence
+TCP SYN activity was isolated using Wireshark filters.
 
-📁 05-Wireshark/05-**ARP**-Capture.png
+The controlled SSH traffic showed:
 
-9.6 **TCP** **SYN** Capture
+```text
+SYN → SYN-ACK
+```
 
-**TCP** **SYN** activity was isolated using Wireshark filters.
+**Evidence:** `05-Wireshark/06-TCP-SYN-Capture.png`
 
-The controlled **SSH** traffic showed:
+### 9.7 TCP RST Capture
 
-## **SYN** **SYN**-**ACK**
+A controlled connection attempt to TCP port `9998` produced:
 
-Evidence
-
-📁 05-Wireshark/06-**TCP**-**SYN**-Capture.png
-
-9.7 **TCP** **RST** Capture
-
-A controlled connection attempt to **TCP** port **9998** produced:
-
-## **RST**, **ACK**
+```text
+RST, ACK
+```
 
 from the Ubuntu target.
 
-Evidence
+**Evidence:** `05-Wireshark/07-TCP-RST-Capture.png`
 
-📁 05-Wireshark/07-**TCP**-**RST**-Capture.png
+---
 
-🔗 Task 10 — Nmap + Wireshark Investigation
+## Task 10 — Nmap + Wireshark Investigation
 
-A controlled Nmap **SYN** scan was performed against:
+A controlled Nmap SYN scan was performed against ports 22 and 9998.
 
-22/tcp **9998**/tcp
+**Command:**
 
-Command:
-
-nmap -sS -p 22,**9998** **192**.**168**.**162**.**130**
+```bash
+nmap -sS -p 22,9998 192.168.162.130
+```
 
 ### Nmap Result
 
-22/tcp   open **9998**/tcp closed
+| Port | State |
+|---|---|
+| `22/tcp` | Open |
+| `9998/tcp` | Closed |
 
 ### Wireshark Correlation
 
-For port 22:
+**For port 22:**
 
-## **SYN** → **SYN**-**ACK** → **ACK**
+```text
+SYN → SYN-ACK → ACK
+```
 
-For port **9998**:
+**For port 9998:**
 
-## **SYN** → **RST**, **ACK**
+```text
+SYN → RST, ACK
+```
 
-Conclusion
+**Conclusion:**
 
 The packet-level observations matched the Nmap port-state classifications.
 
-Evidence
+**Evidence:**
 
-📁 06-Nmap-Wireshark-Investigation/
+- `06-Nmap-Wireshark-Investigation/08-Task10-Nmap-Correlation.png`
+- `06-Nmap-Wireshark-Investigation/09-Task10-Wireshark-Correlation.png`
 
-08-Task10-Nmap-Correlation.png
+---
 
-09-Task10-Wireshark-Correlation.png
-
-🧭 Task 11 — Advanced Traffic Investigation
+## Task 11 — Advanced Traffic Investigation
 
 The traffic investigation examined:
 
-Communication pairs
-
-Observed protocols
-
-**TCP** flags
-
-**SYN** / **SYN**-**ACK** behavior
-
-**RST** behavior
-
-**TCP** retransmissions
-
-Normal versus unexpected traffic patterns
+- Communication pairs
+- Observed protocols
+- TCP flags
+- SYN / SYN-ACK behavior
+- RST behavior
+- TCP retransmissions
+- Normal versus unexpected traffic patterns
 
 ### Communication Baseline
 
-**192**.**168**.**162**.**128** ↔ **192**.**168**.**162**.**130**
+```text
+192.168.162.128 ↔ 192.168.162.130
+```
 
 ### Observed Protocols
 
-## **ICMP**
+- ICMP
+- TCP
+- SSH
+- UDP
+- ARP
+- DNS
 
-## **TCP**
-
-## **SSH**
-
-## **UDP**
-
-## **ARP**
-
-## **DNS**
-
-**TCP** Investigation
+### TCP Investigation
 
 The following behaviors were observed:
 
-Normal connection: **SYN** → **SYN**-**ACK** → **ACK**
+**Normal connection:**
 
-Closed port: **SYN** → **RST**, **ACK**
+```text
+SYN → SYN-ACK → ACK
+```
 
-Retransmission: Repeated **TCP** transmission after the expected response was not received
+**Closed port:**
+
+```text
+SYN → RST, ACK
+```
+
+**Retransmission:**
+
+Repeated TCP transmission after the expected response was not received.
 
 Observed retransmissions were treated as network behavior requiring context rather than automatically being classified as malicious.
 
-Evidence
+**Evidence:**
 
-📁 06-Nmap-Wireshark-Investigation/
+- `06-Nmap-Wireshark-Investigation/`
+- `07-Advanced-Traffic-Investigation/`
 
-and
+---
 
-📁 07-Advanced-Traffic-Investigation/
-
-🛡️ Task 12 — Vulnerability Assessment
+## Task 12 — Vulnerability Assessment
 
 A baseline assessment was performed directly on the Ubuntu target.
 
-Key checks
+### Key Checks
 
-sudo ss -lntup sudo ufw status verbose sudo sshd -T | grep -E '^(permitrootlogin|passwordauthentication|pubkeyauthentication)' apt list --upgradable
+```bash
+sudo ss -lntup
+```
 
-Findings
+```bash
+sudo ufw status verbose
+```
 
-Observation
+```bash
+sudo sshd -T | grep -E '^(permitrootlogin|passwordauthentication|pubkeyauthentication)'
+```
 
-Assessment
+```bash
+apt list --upgradable
+```
 
-**SSH** on **TCP**/22
+### Findings
 
-Exposed service / attack surface
+| Observation | Assessment |
+|---|---|
+| SSH on TCP/22 | Exposed service / attack surface |
+| UFW inactive | Security hardening gap |
+| Password authentication enabled | Hardening opportunity |
+| Root password login prohibited | Positive baseline |
+| Public-key authentication enabled | Positive baseline |
+| No pending package updates observed | No update issue identified |
+| Nmap vulnerability scripts | No findings reported |
 
-**UFW** inactive
-
-Security hardening gap
-
-Password authentication enabled
-
-Hardening opportunity
-
-Root password login prohibited
-
-Positive baseline
-
-Public-key authentication enabled
-
-Positive baseline
-
-No pending package updates observed
-
-No update issue identified
-
-Nmap vulnerability scripts
-
-No findings reported
-
-Important conclusion
+**Important Conclusion:**
 
 No confirmed vulnerability was established solely from these observations.
 
 The strongest actionable findings were hardening gaps, especially the inactive firewall.
 
-Evidence
+**Evidence:** `07-Vulnerability-Assessment/`
 
-📁 07-Vulnerability-Assessment/
-
-📊 Task 12 — Risk Classification
+### 12.1 Risk Classification
 
 The findings were considered according to their practical security impact.
 
-Finding
-
-Classification
-
-Reason
-
-**UFW** inactive
-
-Medium hardening concern
-
-No host-level filtering before hardening
-
-Password authentication enabled
-
-Medium hardening opportunity
-
-Broader authentication exposure than key-only access
-
-**SSH** on **TCP**/22
-
-Attack surface
-
-Required remote-management service
-
-Root password login prohibited
-
-Positive control
-
-Reduces direct root password access
-
-No Nmap vuln findings
-
-Informational
-
-Automated scan produced no reported findings
+| Finding | Classification | Reason |
+|---|---|---|
+| UFW inactive | Medium hardening concern | No host-level filtering before hardening |
+| Password authentication enabled | Medium hardening opportunity | Broader authentication exposure than key-only access |
+| SSH on TCP/22 | Attack surface | Required remote-management service |
+| Root password login prohibited | Positive control | Reduces direct root password access |
+| No Nmap vulnerability findings | Informational | Automated scan produced no reported findings |
 
 These classifications describe the observed lab configuration and are not intended as a formal production risk rating.
 
-🔧 Task 13 — Security Hardening
+---
 
-The main hardening change was enabling **UFW** while explicitly allowing **SSH**.
+## Task 13 — Security Hardening
 
-Before
+The main hardening change was enabling UFW while explicitly allowing SSH.
 
-**UFW**: inactive
+### Before
 
-Configuration
+```text
+UFW: inactive
+```
 
-sudo ufw allow ssh sudo ufw enable
+### Configuration
 
-After
+```bash
+sudo ufw allow ssh
+sudo ufw enable
+```
 
-**UFW**: active Logging: on (low) 22/tcp: **ALLOW** IN 22/tcp (v6): **ALLOW** IN
+### After
 
-Evidence
+```text
+UFW: active
+Logging: on (low)
 
-📁 08-Security-Hardening/
+22/tcp: ALLOW IN
+22/tcp (v6): ALLOW IN
+```
 
-🔄 Task 13 — Before / After Comparison
+**Evidence:** `08-Security-Hardening/`
 
-### Before Hardening
+### 13.1 Before / After Comparison
 
-**UFW**: inactive
+**Before Hardening**
 
-22/tcp → open → ssh **999** **TCP** ports → closed
+```text
+UFW: inactive
 
-### After Hardening
+22/tcp → open → ssh
+999 TCP ports → closed
+```
 
-**UFW**: active
+**After Hardening**
 
-22/tcp → open → ssh **999** **TCP** ports → filtered
+```text
+UFW: active
 
-Interpretation
+22/tcp → open → ssh
+999 TCP ports → filtered
+```
 
-The firewall successfully changed the behavior of unsolicited inbound **TCP** traffic.
+**Interpretation:**
 
-**SSH** remained available because **TCP**/22 was explicitly allowed.
+The firewall successfully changed the behavior of unsolicited inbound TCP traffic.
 
-Validation
+SSH remained available because TCP/22 was explicitly allowed.
 
-**SSH** connectivity was successfully verified after enabling the firewall.
+**Validation:**
 
-🧠 Task 14 — Final Mini Security Assessment
+SSH connectivity was successfully verified after enabling the firewall.
+
+---
+
+## Task 14 — Final Mini Security Assessment
 
 The final assessment combined:
 
-Lab discovery
-
-Nmap scanning
-
-Service/version detection
-
-OS detection
-
-**TCP** and **UDP** assessment
-
-Wireshark packet analysis
-
-Nmap/Wireshark correlation
-
-Vulnerability assessment
-
-Security hardening
-
-Before/after validation
+- Lab discovery
+- Nmap scanning
+- Service/version detection
+- OS detection
+- TCP and UDP assessment
+- Wireshark packet analysis
+- Nmap/Wireshark correlation
+- Vulnerability assessment
+- Security hardening
+- Before/after validation
 
 ### Final Target Baseline
 
-Target: **192**.**168**.**162**.**130**
-
-Primary exposed service: 22/tcp → **SSH**
-
-Service: OpenSSH 10.2p1 Ubuntu 2ubuntu3.5
+| Field | Result |
+|---|---|
+| Target | `192.168.162.130` |
+| Primary exposed service | `22/tcp` — SSH |
+| Service | OpenSSH 10.2p1 Ubuntu 2ubuntu3.5 |
 
 ### Final Security State
 
-**UFW**: Active
-
-**SSH**: Accessible
-
-Other scanned **TCP** ports: Filtered
+| Component | Final State |
+|---|---|
+| UFW | Active |
+| SSH | Accessible |
+| Other scanned TCP ports | Filtered |
 
 The assessment demonstrated that enabling the host firewall reduced unsolicited network exposure while preserving the required administrative service.
 
-✅ Key Learnings
+---
+
+## Key Learnings
 
 Through this practical, I learned how to:
 
-Build an isolated cybersecurity lab.
+- Build an isolated cybersecurity lab.
+- Use Nmap for structured network assessment.
+- Understand TCP port states.
+- Perform service and version detection.
+- Interpret OS-detection limitations.
+- Perform TCP SYN and UDP scanning.
+- Capture and analyze packets using Wireshark.
+- Understand ICMP, DNS, ARP, TCP and UDP traffic.
+- Correlate scanner output with packet-level evidence.
+- Investigate SYN, RST and retransmission behavior.
+- Perform evidence-based vulnerability assessment.
+- Apply firewall hardening.
+- Validate security improvements using before/after testing.
 
-Use Nmap for structured network assessment.
+## Challenges Faced
 
-Understand **TCP** port states.
+### Host Connectivity Issue
 
-Perform service and version detection.
-
-Interpret OS-detection limitations.
-
-Perform **TCP** **SYN** and **UDP** scanning.
-
-Capture and analyze packets using Wireshark.
-
-Understand **ICMP**, **DNS**, **ARP**, **TCP** and **UDP** traffic.
-
-Correlate scanner output with packet-level evidence.
-
-Investigate **SYN**, **RST** and retransmission behavior.
-
-Perform evidence-based vulnerability assessment.
-
-Apply firewall hardening.
-
-Validate security improvements using before/after testing.
-
-⚠️ Challenges Faced
-
-## Host connectivity issue
-
-At one stage, the expected **ICMP** traffic was not visible because the target was unreachable.
+At one stage, the expected ICMP traffic was not visible because the target was unreachable.
 
 This was resolved by checking the interface configuration and restoring correct Host-only network connectivity.
 
-## DNS capture issue
+### DNS Capture Issue
 
-The Host-only VMware network did not provide a working **DNS** service for the **DNS** experiment.
+The Host-only VMware network did not provide a working DNS service for the DNS experiment.
 
-A temporary **NAT** connection was used only to generate and capture legitimate **DNS** traffic, after which Kali was returned to the isolated Host-only network.
+A temporary NAT connection was used only to generate and capture legitimate DNS traffic, after which Kali was returned to the isolated Host-only network.
 
-## Wireshark filtering
+### Wireshark Filtering
 
 Some filters initially displayed unrelated background traffic or no matching packets.
 
-This was resolved by narrowing filters to the required IP addresses, ports, and **TCP** flags.
+This was resolved by narrowing filters to the required IP addresses, ports, and TCP flags.
 
-## OS detection limitation
+### OS Detection Limitation
 
 Nmap did not return an exact OS match.
 
 Rather than forcing a conclusion, the result was documented as an inconclusive OS fingerprint.
 
-🔐 Security Recommendations
+## Security Recommendations
 
 Based on the lab assessment:
 
-Keep host-based firewall protection enabled.
+- Keep host-based firewall protection enabled.
+- Allow only required services through the firewall.
+- Prefer SSH public-key authentication over password authentication.
+- Restrict SSH exposure to trusted networks wherever practical.
+- Continue monitoring unusual connection attempts and retransmissions.
+- Regularly review exposed services and listening ports.
+- Keep systems updated and verify security configuration after changes.
+- Reassess the system after significant configuration changes.
 
-Allow only required services through the firewall.
+---
 
-Prefer **SSH** public-key authentication over password authentication.
+## Repository Structure
 
-Restrict **SSH** exposure to trusted networks wherever practical.
+```text
+Week-3-Advanced-Cybersecurity-Practical-Task/
+│
+├── 01-Report/
+│   ├── Week-3-Final-Report-Advanced-Cover-Enhanced.pdf
+│   └── Week-3-Final-Report-Advanced-Cover-Enhanced.docx
+│
+├── 02-Presentation/
+│   └── Week-3-Presentation-Advanced.pptx
+│
+├── 03-Network-Topology/
+│   └── Week3-Advanced-Network-Topology.png
+│
+├── 04-Nmap/
+│   ├── 01-Network-Discovery.png
+│   ├── 02-Basic-Nmap-Scan.png
+│   ├── 03-Nmap-Service-Version-Detection.png
+│   ├── 04-Nmap-OS-Detection.png
+│   ├── 05-Nmap-SYN-Scan.png
+│   ├── 06-Nmap-UDP-Top20.png
+│   └── 07-Nmap-Vulnerability-Scripts.png
+│
+├── 05-Wireshark/
+│   ├── 01-ICMP-Capture.png
+│   ├── 02-DNS-Capture.png
+│   ├── 03-TCP-SSH-Capture.png
+│   ├── 04-UDP-Capture.png
+│   ├── 05-ARP-Capture.png
+│   ├── 06-TCP-SYN-Capture.png
+│   └── 07-TCP-RST-Capture.png
+│
+├── 06-Nmap-Wireshark-Investigation/
+│   ├── 08-Task10-Nmap-Correlation.png
+│   └── 09-Task10-Wireshark-Correlation.png
+│
+├── 07-Vulnerability-Assessment/
+│
+├── 08-Security-Hardening/
+│
+└── README.md
+```
 
-Continue monitoring unusual connection attempts and retransmissions.
+---
 
-Regularly review exposed services and listening ports.
-
-Keep systems updated and verify security configuration after changes.
-
-Reassess the system after significant configuration changes.
-
-📁 Repository Structure
-
-Week-3-Advanced-Cybersecurity-Practical-Task/ │ ├── 01-Report/ │   ├── Week-3-Final-Report-Advanced-Cover-Enhanced.pdf │   └── Week-3-Final-Report-Advanced-Cover-Enhanced.docx │ ├── 02-Presentation/ │   └── Week-3-Presentation-Advanced.pptx │ ├── 03-Network-Topology/ │   └── Week3-Advanced-Network-Topology.png │ ├── 04-Nmap/ │   ├── 01-Network-Discovery.png │   ├── 02-Basic-Nmap-Scan.png │   ├── 03-Nmap-Service-Version-Detection.png │   ├── 04-Nmap-OS-Detection.png │   ├── 05-Nmap-**SYN**-Scan.png │   ├── 06-Nmap-**UDP**-Top20.png │   └── 07-Nmap-Vulnerability-Scripts.png │ ├── 05-Wireshark/ │   ├── 01-**ICMP**-Capture.png │   ├── 02-**DNS**-Capture.png │   ├── 03-**TCP**-**SSH**-Capture.png │   ├── 04-**UDP**-Capture.png │   ├── 05-**ARP**-Capture.png │   ├── 06-**TCP**-**SYN**-Capture.png │   └── 07-**TCP**-**RST**-Capture.png │ ├── 06-Nmap-Wireshark-Investigation/ │   ├── 08-Task10-Nmap-Correlation.png │   └── 09-Task10-Wireshark-Correlation.png │ ├── 07-Vulnerability-Assessment/ │ ├── 08-Security-Hardening/ │ └── **README**.md
-
-📄 Project Deliverables
+## Project Deliverables
 
 ### Final Report
 
 A 15-page technical report covering the complete practical assessment.
 
-Presentation
+### Presentation
 
 A 12-slide professional presentation summarizing the project, findings, traffic analysis, hardening and results.
 
@@ -749,45 +714,43 @@ A 12-slide professional presentation summarizing the project, findings, traffic 
 
 Advanced visual representation of the VMware Host-only cybersecurity lab.
 
-Evidence
+### Evidence
 
 Real screenshots captured during the practical activities.
 
-🔒 Scope & Safety
+## Scope & Safety
 
 All activities in this repository were performed in an authorized, isolated laboratory environment using self-controlled virtual machines.
 
 The practical was conducted for:
 
-cybersecurity learning
-
-network analysis
-
-defensive security assessment
-
-traffic investigation
-
-hardening validation
+- Cybersecurity learning
+- Network analysis
+- Defensive security assessment
+- Traffic investigation
+- Hardening validation
 
 No unauthorized systems were intentionally targeted.
 
-📚 References
+## References
 
-### Nmap Documentation
+- [Nmap Documentation](https://nmap.org/book/man.html)
+- [Wireshark Documentation](https://www.wireshark.org/docs/)
+- [Ubuntu Server Documentation](https://documentation.ubuntu.com/server/)
+- [Ubuntu OpenSSH Documentation](https://documentation.ubuntu.com/server/how-to/security/openssh-server/)
+- [VMware Documentation](https://docs.vmware.com/)
 
-### Wireshark Documentation
+## Internship Information
 
-### Ubuntu Server Documentation
+| Field | Details |
+|---|---|
+| Program | DG Interns Hub Cybersecurity Internship |
+| Week | 03 |
+| Focus | Advanced Cybersecurity Practical Task |
+| Participant | SAMYUKTHA S |
+| Internship ID | DG/SEPTEMBER/CYBER/102 |
 
-Ubuntu OpenSSH Documentation
-
-VMware Documentation
-
-🎓 Internship Information
-
-Program: DG Interns Hub Cybersecurity Internship Week: 03 Focus: Advanced Cybersecurity Practical Task Participant: **SAMYUKTHA** S. Internship ID: DG/**SEPTEMBER**/**CYBER**/**102**
-
-🏁 Conclusion
+## Conclusion
 
 This Week 03 practical provided hands-on experience in conducting a structured cybersecurity assessment within a controlled virtual environment.
 
@@ -795,10 +758,6 @@ The project progressed from network discovery and Nmap scanning to packet-level 
 
 The most important learning was that security tools should be used together and their results should be interpreted using actual evidence. Nmap provided visibility into exposed ports and services, while Wireshark provided packet-level context. The hardening stage then demonstrated how a security control can measurably change network exposure without disrupting required connectivity.
 
-<div align=*center*>
-
-🔐 Stronger Networks. Safer Tomorrow.
+**Stronger Networks. Safer Tomorrow.**
 
 DG Interns Hub — Cybersecurity Internship — Week 03
-
-</div>
